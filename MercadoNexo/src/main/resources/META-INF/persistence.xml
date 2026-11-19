@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0"
+             xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+
+    <persistence-unit name="MercadoNexoPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+        <class>cl.mercadonexo.model.Categoria</class>
+        <class>cl.mercadonexo.model.Producto</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+        <properties>
+            <!-- Conexión a SQL Server (ajustar host/puerto/usuario/clave si corresponde) -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:sqlserver://localhost:1433;databaseName=MercadoNexoDB;encrypt=true;trustServerCertificate=true"/>
+            <property name="jakarta.persistence.jdbc.user" value="nexo_app"/>
+            <property name="jakarta.persistence.jdbc.password" value="Nexo2026!App"/>
+
+            <!-- EclipseLink -->
+            <property name="eclipselink.target-database" value="SQLServer"/>
+            <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
+            <property name="eclipselink.cache.shared.default" value="false"/>
+
+            <!-- Muestra en el log de GlassFish el SQL generado (evidencia de JPA -> SQL Server) -->
+            <property name="eclipselink.logging.level" value="INFO"/>
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
